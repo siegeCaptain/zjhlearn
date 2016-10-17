@@ -1,0 +1,25 @@
+prefix: devjiahao
+zooKeeperHosts: 192.168.4.220:2182
+projectName: devjiahao
+
+port:
+    mongodb: 27017
+    core: 7000
+    account: 7001
+
+service:
+    core: core-service
+    account: account-service
+    projectName: ${projectName}
+    
+host:
+    mongodb: 127.0.0.1
+    core: 127.0.0.1
+    account: 127.0.0.1
+    
+accountMongodb:
+    username:
+    password:
+    authenticationDatabase: admin
+active:
+    profile: devjiahao
