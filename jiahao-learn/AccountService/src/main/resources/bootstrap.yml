@@ -1,0 +1,7 @@
+spring :
+  application :
+    name : account
+  cloud:
+    config:
+      git:
+        uri: http://127.0.0.1:9002

@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=dev ../target/ma-account-service-0.1.jar --spring.cloud.config.uri=http://192.168.2.236:9001

@@ -1,0 +1,1 @@
+nohup java -jar -Dspring.profiles.active=product ../target/ma-account-service-0.1.jar --spring.cloud.config.uri=http://config.boldseas.com:9001

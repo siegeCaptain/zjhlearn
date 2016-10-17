@@ -1,0 +1,39 @@
+#ignore target under current directory and all subdirectories:
+target/
+*/target/
+
+test-output/
+*/test-output/
+
+#ignore settings & gitignore file
+.settings/
+*/.settings/
+
+
+.springBeans
+*/.springBeans
+
+.project
+
+*/.project
+
+.classpath
+
+*/.classpath
+
+
+*.log
+*.log.zip
+.DS_Store
+
+*.iml
+.idea
+将删除 .gitignore
+将删除 AccountService/src/main/java/zjh/learn/Controller/
+将删除 AccountService/src/main/java/zjh/learn/Service/
+将删除 AccountService/src/test/
+将删除 CoreService/src/main/java/zjh/learn/Service/
+将删除 CoreService/src/test/
+将删除 ShortLinkService/src/test/
+将删除 ZooKeeper/src/main/resources/
+将删除 ZooKeeper/src/test/

@@ -1,0 +1,13 @@
+server:
+  port: 7999
+  host: 127.0.0.1
+
+shorturlapi:
+  shortLinkServiceUrl: http://${server.host}:${server.port}
+
+spring:
+    data:
+        mongodb:
+            host: ${server.host}
+            port: 27017
+            database: shorturldb

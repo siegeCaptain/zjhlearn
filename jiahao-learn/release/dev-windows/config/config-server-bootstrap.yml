@@ -1,0 +1,11 @@
+server:
+  port: 9002
+spring:
+  config:
+    name: cfg_server
+  cloud:
+    config:
+      server:
+       git:
+        uri: /zjhlearn/springboot-conf-zjh
+        searchPaths: zjhlearn
