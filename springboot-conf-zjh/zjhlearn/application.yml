@@ -6,6 +6,7 @@ port:
     mongodb: 27017
     core: 7000
     account: 7001
+    common: 7002
 
 service:
     core: core-service
@@ -16,6 +17,7 @@ host:
     mongodb: 127.0.0.1
     core: 127.0.0.1
     account: 127.0.0.1
+    common: 127.0.0.1
     
 accountMongodb:
     username:

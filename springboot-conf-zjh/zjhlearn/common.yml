@@ -1,0 +1,10 @@
+server:
+  port: ${port.common}
+
+commonServiceUrl: http://${host.common}:${port.common}
+
+zooKeeper:
+    hosts: ${zooKeeperHosts}
+    project: ${projectName}
+    service: ${service.common}
+    port: ${port.common}
