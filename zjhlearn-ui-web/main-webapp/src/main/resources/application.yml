@@ -1,0 +1,24 @@
+server:
+  port: 6006
+  tomcat:
+    accesslog:
+      directory: /data/logs/zjhlearn-ui-web/access # Directory in which log files are created. Can be relative to the tomcat base dir or absolute.
+      enabled: true # Enable access log.
+      pattern: "%h %A:%p %l %u %t \"%r\" %s %b %D %{User-Agent}i"
+
+spring:
+  mobile:
+    devicedelegatingviewresolver:
+      enabled: true
+      normal-prefix: pc/
+      tablet-prefix: pc/
+
+cdn:
+  path:
+    image: /image
+    style: /css
+    scripts: /js
+
+urls:
+  indexUrl: //dev.jiahao.com:6006
+  payUrl: http://store.jeep.com.cn/shoppaytest/payment/plugin_submit.jhtml #支付跳转地址

@@ -15,6 +15,7 @@
         <module>ZooKeeper</module>
         <module>Interface</module>
         <module>Common</module>
+        <module>PaymentService</module>
     </modules>
 
 
