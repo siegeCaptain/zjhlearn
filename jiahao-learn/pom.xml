@@ -16,6 +16,7 @@
         <module>Interface</module>
         <module>Common</module>
         <module>PaymentService</module>
+        <module>CoinStore</module>
     </modules>
 
 

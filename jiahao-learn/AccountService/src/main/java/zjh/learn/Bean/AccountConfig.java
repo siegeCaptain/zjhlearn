@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by jiahao on 16-8-8.
+ * Created by jiahao.zhang on 16-8-8.
  */
 @Configuration
 @ConfigurationProperties(prefix = "accountservice")
