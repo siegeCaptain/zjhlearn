@@ -1,1 +1,1 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>

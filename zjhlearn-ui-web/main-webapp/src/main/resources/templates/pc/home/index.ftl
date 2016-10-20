@@ -9,7 +9,7 @@
 <body>
 
 <#include "../include/header.ftl">
-<#include "../order/create.ftl">
+<#include "../order/index.ftl">
 
 </body>
 </html>

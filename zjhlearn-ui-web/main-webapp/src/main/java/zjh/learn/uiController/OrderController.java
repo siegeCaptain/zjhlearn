@@ -2,20 +2,22 @@ package zjh.learn.uiController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import zjh.learn.dtos.ENUM.OrderStatus;
 import zjh.learn.dtos.OrderDto;
 import zjh.learn.service.PayService;
 import zjh.learn.service.dtos.JsPayInput;
 import zjh.learn.service.dtos.QrPayInput;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 11501 on 2016/10/18.
@@ -37,10 +39,17 @@ public class OrderController {
         this.payService = payService;
     }
 
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public OrderDto create(@RequestBody OrderDto inputOrder) {
+    /**
+     *创建订单
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> create(@RequestBody OrderDto inputOrder) {
+        Map<String, Object> data = new HashMap<String, Object>();
         OrderDto savedOrder = restTemplate.postForObject("http://127.0.0.1:7007/order/create", inputOrder, OrderDto.class);
-        return savedOrder;
+        data.put("sn", savedOrder.getSn());
+        data.put("paymentMethod", savedOrder.getPaymentMethod());
+        return data;
     }
 
     @RequestMapping(path = "/payment")
@@ -60,6 +69,9 @@ public class OrderController {
         return "order/payment";
     }
 
+    /**
+     *微信扫描二维码支付
+     */
     @RequestMapping(path = "/payment/wechatQr")
     public String qrImg(String orderSn, ModelMap model) {
         OrderDto order = restTemplate.getForObject(url("{sn}?openId={openId}"), OrderDto.class, orderSn, getOpenId());
@@ -73,7 +85,7 @@ public class OrderController {
     private String url(String path) {
         if (!path.startsWith("/") && !path.startsWith("?"))
             path = "/" + path;
-        return String.format("%s/api/v1/order%s", "http://127.0.0.1:7007", path);
+        return String.format("%s/order/payment%s", "http://127.0.0.1:7007", path);
     }
 
     //// TODO: 2016/10/20 获取用户微信号

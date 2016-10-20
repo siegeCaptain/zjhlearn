@@ -1,6 +1,7 @@
 package zjh.learn.dtos;
 
 import zjh.learn.dtos.ENUM.OrderStatus;
+import zjh.learn.dtos.ENUM.PaymentMethod;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,6 +20,9 @@ public class OrderDto extends BaseEntityDto<String>{
 
     //订单硬币个数(5角为基数)
     private Integer coinNum;
+
+    //支付方式
+    private PaymentMethod paymentMethod;
 
     /**
      * 已付款金额
@@ -58,6 +62,14 @@ public class OrderDto extends BaseEntityDto<String>{
 
     public void setCoinNum(Integer coinNum) {
         this.coinNum = coinNum;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public BigDecimal getAmountPaid() {

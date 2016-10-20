@@ -32,9 +32,10 @@ public class OrderController {
     /**
      *创建
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
     @ResponseBody
     public Order create(@RequestBody Order order) {
+
         Order saveOrder = orderService.create(order.getCoinNum(), order.getPaymentMethod(), null);
         return saveOrder;
     }
