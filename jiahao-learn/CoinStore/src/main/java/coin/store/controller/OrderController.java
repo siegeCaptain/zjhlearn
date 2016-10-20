@@ -34,10 +34,9 @@ public class OrderController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public String create(@RequestBody Order order) {
+    public Order create(@RequestBody Order order) {
         Order saveOrder = orderService.create(order.getCoinNum(), order.getPaymentMethod(), null);
-        System.out.print(PaymentMethod.wechat);
-        return saveOrder.toString();
+        return saveOrder;
     }
 
     /**
