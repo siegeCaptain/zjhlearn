@@ -17,6 +17,7 @@
         <module>Common</module>
         <module>PaymentService</module>
         <module>CoinStore</module>
+        <module>MiddleWare</module>
     </modules>
 
 

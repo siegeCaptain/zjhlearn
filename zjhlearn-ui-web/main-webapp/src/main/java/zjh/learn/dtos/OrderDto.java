@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * 订单DTO
- * Created by 11501 on 2016/10/18.
+ * Created by jiahao.zhang on 2016/10/18.
  */
 public class OrderDto extends BaseEntityDto<String>{
 

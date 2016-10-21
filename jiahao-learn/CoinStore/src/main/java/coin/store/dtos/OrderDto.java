@@ -1,18 +1,17 @@
-package coin.store.entity;
+package coin.store.dtos;
+
 
 import coin.store.entity.ENUM.OrderStatus;
 import coin.store.entity.ENUM.PaymentMethod;
-import coin.store.entity.baseEntity.BaseEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by 11501 on 2016/10/18.
+ * 订单DTO
+ * Created by jiahao.zhang on 2016/10/18.
  */
-@Document(collection = "orders")
-public class Order extends BaseEntity<String> {
+public class OrderDto extends BaseEntityDto<String>{
 
     //订单编号
     private String sn;
@@ -22,6 +21,9 @@ public class Order extends BaseEntity<String> {
 
     //订单硬币个数(5角为基数)
     private Integer coinNum;
+
+    //支付方式
+    private PaymentMethod paymentMethod;
 
     /**
      * 已付款金额
@@ -38,11 +40,7 @@ public class Order extends BaseEntity<String> {
      */
     private Date expire;
 
-    /**
-     *支付方式
-     */
-    private PaymentMethod paymentMethod;
-
+    //region setter and getter
     public String getSn() {
         return sn;
     }
@@ -65,6 +63,14 @@ public class Order extends BaseEntity<String> {
 
     public void setCoinNum(Integer coinNum) {
         this.coinNum = coinNum;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public BigDecimal getAmountPaid() {
@@ -90,25 +96,5 @@ public class Order extends BaseEntity<String> {
     public void setExpire(Date expire) {
         this.expire = expire;
     }
-
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "sn='" + sn + '\'' +
-                ", status=" + status +
-                ", coinNum=" + coinNum +
-                ", amountPaid=" + amountPaid +
-                ", shippedCoinNum=" + shippedCoinNum +
-                ", expire=" + expire +
-                ", paymentMethod=" + paymentMethod +
-                '}';
-    }
+    //endregion
 }

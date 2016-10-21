@@ -1,13 +1,13 @@
 package zjh.learn.service.dtos;
 
 /**
- * Created by 11501 on 2016/10/20.
+ * Created by jiahao.zhang on 2016/10/20.
  */
 public class QrPayInput {
 
     private String sn;
     private String type="payment";
-    private String paymentPluginId="wechatScanPaymentPlugin";
+    private String paymentPluginId="wechatQrPaymentPlugin";
     private String openId;//wechat openId
 
     public QrPayInput(String sn,String openId) {

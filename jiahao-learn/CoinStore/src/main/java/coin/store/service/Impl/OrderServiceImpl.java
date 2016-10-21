@@ -6,11 +6,15 @@ import coin.store.entity.Order;
 import coin.store.repository.OrderRepository;
 import coin.store.service.OrderService;
 import org.apache.commons.lang.time.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,6 +24,8 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     // 订单默认有效期为30分钟
     private final int DEFAULT_VALID_PERIOD = 30;
@@ -63,5 +69,33 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return order;
+    }
+
+    /**
+     * 释放过期订单已分配库存并取消订单
+     */
+    @Override
+    public void releaseExpiredAllocatedStockAndCancel() {
+
+        int countOrder = 0;
+        while (true) {
+            List<Order> orders = orderRepository.findAll();
+            if (!CollectionUtils.isEmpty(orders)) {
+                for (Order order : orders) {
+                    try {
+                        if ((new Date()).after(order.getExpire())) {
+                            orderRepository.delete(order);
+                        }
+                    } catch (Exception e) {
+                        logger.error("release expire order error. {sn}", order.getSn());
+                    }
+                }
+            }
+            countOrder += orders.size();
+            if (orders.size() < 100) {
+                break;
+            }
+        }
+        logger.info("Automatic task release timeout order: " + countOrder + "");
     }
 }

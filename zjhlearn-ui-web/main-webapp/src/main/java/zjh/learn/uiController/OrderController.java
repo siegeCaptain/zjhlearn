@@ -74,9 +74,9 @@ public class OrderController {
      */
     @RequestMapping(path = "/payment/wechatQr")
     public String qrImg(String orderSn, ModelMap model) {
-        OrderDto order = restTemplate.getForObject(url("{sn}?openId={openId}"), OrderDto.class, orderSn, getOpenId());
-        if (!OrderStatus.pendingPayment.equals(order.getStatus()))
-            return "redirect:/order/account/list/unpaid";
+        OrderDto order = restTemplate.getForObject(url("{sn}"), OrderDto.class, orderSn);
+//        if (!OrderStatus.pendingPayment.equals(order.getStatus()))
+//            return "redirect:/order/account/list/unpaid";
         model.put("qrImg", payService.QrUrl(new QrPayInput(orderSn, getOpenId())));
         model.put("order", order);
         return "order/wechatQr";
@@ -85,7 +85,7 @@ public class OrderController {
     private String url(String path) {
         if (!path.startsWith("/") && !path.startsWith("?"))
             path = "/" + path;
-        return String.format("%s/order/payment%s", "http://127.0.0.1:7007", path);
+        return String.format("http://127.0.0.1:7007/order%s", path);
     }
 
     //// TODO: 2016/10/20 获取用户微信号

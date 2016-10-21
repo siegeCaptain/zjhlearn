@@ -5,6 +5,7 @@ import coin.store.entity.Order;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by 11501 on 2016/10/18.
@@ -24,4 +25,9 @@ public interface OrderService {
      * @return 订单
      */
     Order create(Integer coinNum, PaymentMethod paymentMethod, BigDecimal balance);
+
+    /**
+     * 释放过期订单已分配库存并取消订单
+     */
+    void releaseExpiredAllocatedStockAndCancel();
 }

@@ -1,16 +1,14 @@
 package coin.store.controller;
 
-import coin.store.entity.ENUM.PaymentMethod;
+import coin.store.dtos.OrderDto;
 import coin.store.entity.Order;
 import coin.store.repository.OrderRepository;
 import coin.store.service.OrderService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
@@ -32,12 +30,23 @@ public class OrderController {
     /**
      *创建
      */
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public Order create(@RequestBody Order order) {
 
         Order saveOrder = orderService.create(order.getCoinNum(), order.getPaymentMethod(), null);
         return saveOrder;
+    }
+
+    /**
+     * 获取订单信息
+     */
+    @RequestMapping(value = "/{sn}", method = RequestMethod.GET)
+    @ResponseBody
+    public OrderDto getOrderInfo(@PathVariable("sn") String sn) {
+        Order order = orderRepository.findBySn(sn);
+        ModelMapper mapper = new ModelMapper();
+        return mapper.map(order, OrderDto.class);
     }
 
     /**

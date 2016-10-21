@@ -22,21 +22,20 @@
         <div class="payWx">
             <div class="payWxCon">
                 <a href="#" class="payCode"><img src=${qrImg}alt="" style="width: 212px;height: 212px;"></a>
-                <p class="payCodeBot"><img src="${image("pc/wx_icon.png")}" alt=""><span>请使用微信扫一扫<br>扫描二维码支付</span></p>
+                <p class="payCodeBot"><img src="${image("wx/wx_icon.png")}" alt=""><span>请使用微信扫一扫<br>扫描二维码支付</span></p>
             </div>
         </div>
         <div class="shopCarOper">
             <a href="/order/payment?orderSn=${order.sn}" class="shopCarDel">选择其他支付方式</a>
             <div class="scOperRight">
                 <div class="scOperTotal">
-                    <h4>应付金额:<span>${money(order.amount)}</span></h4>
+                    <h4>应付金额:<span></span></h4>
                 </div>
             </div>
         </div>
     </div>
     <div class="sFooterHeight"></div>
 </div>
-<#include "../include/footer.ftl">
 <script type="text/javascript">
     function checkPayment() {
         $.ajax({
