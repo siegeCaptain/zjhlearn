@@ -12,22 +12,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String id;
+    private String userId;
     private String name;
     private String password;
     private String phone;
+    private String openId;
     private String created_time;
     private String updated_time;
 
     public User() {
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -54,6 +55,14 @@ public class User {
         this.phone = phone;
     }
 
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
     public String getCreated_time() {
         return created_time;
     }
@@ -73,9 +82,11 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
+                ", openId='" + openId + '\'' +
                 ", created_time='" + created_time + '\'' +
                 ", updated_time='" + updated_time + '\'' +
                 '}';

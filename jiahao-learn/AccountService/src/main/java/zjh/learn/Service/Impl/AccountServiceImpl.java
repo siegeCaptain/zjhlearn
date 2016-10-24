@@ -26,14 +26,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User getUser(String name, String password) {
+    public User getUser(String name, String phone, String password) {
         password = encryptProvider.encryptPassword(password);
-        return userRepository.findByNameAndPassword(name, password);
+        User targetUser = userRepository.findByNameAndPassword(name, password);
+        if (targetUser == null) {
+            targetUser = userRepository.findByPhoneAndPassword(phone, password);
+        }
+        return targetUser;
     }
 
     @Override
     public String saveUser(User user) {
-        User existsUser = getUser(user.getName(), user.getPassword());
+        User existsUser = getUser(user.getName(), user.getPhone(), user.getPassword());
         if(existsUser != null) {
             return "user has exists, please login";
         }

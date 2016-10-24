@@ -9,6 +9,7 @@
 <body>
 
 <#include "../include/header.ftl">
+<#include "../include/prev.ftl">
 <#include "../order/index.ftl">
 
 </body>

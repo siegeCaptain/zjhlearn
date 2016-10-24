@@ -10,7 +10,7 @@ import zjh.learn.bean.User;
 @Service
 public interface AccountService {
 
-    User getUser(String name, String password);
+    User getUser(String name,String phone, String password);
 
     String saveUser(User user);
 }

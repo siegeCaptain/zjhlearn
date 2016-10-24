@@ -13,6 +13,9 @@ spring:
       normal-prefix: pc/
       tablet-prefix: pc/
 
+interceptorPathPatterns:
+  authToken: ["/goods/arrivalNotice/**","/account/**","/order/**"]
+
 cdn:
   path:
     image: /image
@@ -21,4 +24,7 @@ cdn:
 
 urls:
   indexUrl: //dev.jiahao.com:6006
+  acountServiceApiUrl: http://127.0.0.1:7001 #对外acount api接口地址
+  loginUrl: ${urls.acountServiceApiUrl}/api/account/login
   payUrl: http://store.jeep.com.cn/shoppaytest/payment/plugin_submit.jhtml #支付跳转地址
+  payWechatUrl: http://store.jeep.com.cn/shoptest/wechat/auth #微信跳转地址
