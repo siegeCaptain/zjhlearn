@@ -3,9 +3,13 @@ package zjh.learn.Common;
 /**
  * Created by jiahao on 16-8-10.
  */
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
  * 返回前端Token
  */
+@Document(collection = "tokens")
 public class Token {
 
     private String id;

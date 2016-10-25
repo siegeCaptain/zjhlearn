@@ -8,6 +8,10 @@ import zjh.learn.bean.User;
  */
 public interface UserRepository extends MongoRepository<User, String> {
 
+    User findByName(String name);
+
+    User findByPhone(String phone);
+
     User findByNameAndPassword(String name, String password);
 
     User findByPhoneAndPassword(String phone, String password);
