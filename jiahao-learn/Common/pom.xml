@@ -68,11 +68,8 @@
             <version>1.10.19</version>
         </dependency>
         <!--ZooKeeper负载均衡-->
-        <dependency>
-            <groupId>com.zjh</groupId>
-            <artifactId>zjh-learn-zookeeper</artifactId>
-            <version>0.1.0</version>
-        </dependency>
+        <!--todo-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>

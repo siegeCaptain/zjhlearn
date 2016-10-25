@@ -6,9 +6,6 @@
 	<groupId>zjh.learn</groupId>
 	<artifactId>zjhlearn-ui-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>main-webapp</module>
-    </modules>
     <packaging>pom</packaging>
 
 	<name>zjhlearn-ui-web</name>

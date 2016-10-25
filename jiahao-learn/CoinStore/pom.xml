@@ -103,11 +103,7 @@
         </dependency>
 
         <!--ZooKeeper负载均衡-->
-        <dependency>
-            <groupId>com.zjh</groupId>
-            <artifactId>zjh-learn-zookeeper</artifactId>
-            <version>0.1.0</version>
-        </dependency>
+        <!--todo-->
 
         <dependency>
             <groupId>commons-lang</groupId>
