@@ -7,5 +7,5 @@ spring:
     config:
       server:
        git:
-        uri: D:\data\zjhlearn-config
-        searchPaths: springboot-conf-zjh\zjhlearn
+        uri: D:\data\springboot-conf-zjh
+        searchPaths: zjhlearn
