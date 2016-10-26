@@ -64,9 +64,16 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public boolean removeTokenByAuthCode(String authCode) {
         TokenDto token = tokenRepository.getByAuthCode(authCode);
-        tokenRepository.delete(token.getId());
+        try {
+            tokenRepository.delete(token.getId());
+        } catch (Exception e) {
+            if (tokenRepository.getByAuthCode(authCode) != null) {
+                return false;
+            }
+            return true;
+        }
         return true;
     }
 
-    private final long DEFAULT_VALID_PERIOD = 1000 * 60 * 60 * 24;// token默认有效期为24小时
+    private final long DEFAULT_VALID_PERIOD = 1000 * 60 * 60 * 24 *7;// token默认有效期为7天
 }

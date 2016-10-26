@@ -1,4 +1,4 @@
-package zjh.learn.dtos;
+package zjh.learn.Dtos;
 
 /**
  * DTO-权限验证返回output

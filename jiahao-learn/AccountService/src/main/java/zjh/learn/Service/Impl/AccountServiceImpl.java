@@ -9,6 +9,7 @@ import zjh.learn.Repository.UserRepository;
 import zjh.learn.Service.AccountService;
 import zjh.learn.Service.TokenService;
 import zjh.learn.Utils.HttpAccessHelper;
+import zjh.learn.bean.TokenDto;
 import zjh.learn.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -96,7 +97,8 @@ public class AccountServiceImpl implements AccountService {
             data.put("code", 1);
             data.put("message", "登陆成功!");
             data.put("loginUser", targetUser);
-            tokenService.putToken(targetUser.getUserId(), httpAccessHelper.getUserIp(request));
+            TokenDto token = tokenService.putToken(targetUser.getUserId(), httpAccessHelper.getUserIp(request));
+            data.put("authToken", token.getAuthCode());
             return data;
         } else {
             data.put("code", 2);

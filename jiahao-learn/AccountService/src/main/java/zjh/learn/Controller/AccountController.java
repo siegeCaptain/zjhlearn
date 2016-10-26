@@ -2,13 +2,11 @@ package zjh.learn.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.*;
 import zjh.learn.Service.AccountService;
+import zjh.learn.Service.TokenService;
 import zjh.learn.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,14 +17,14 @@ import java.util.Map;
 @RequestMapping(value = "/api/account")
 public class AccountController {
 
-    private final HttpServletResponse response;
     private final AccountService accountService;
+    private final TokenService tokenService;
 
     @Autowired
-    public AccountController(HttpServletResponse response,
-                             AccountService accountService) {
-        this.response = response;
+    public AccountController(AccountService accountService,
+                             TokenService tokenService) {
         this.accountService = accountService;
+        this.tokenService = tokenService;
     }
 
     //region 用户注册
@@ -40,6 +38,13 @@ public class AccountController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map<String, Object> getUser(@RequestBody User user, HttpServletRequest request) {
         return accountService.login(user, request);
+    }
+    //endregion
+
+    //region 用户退出登陆
+    @RequestMapping(value = "/logout/{authToken}", method = RequestMethod.GET)
+    public boolean getUser(@PathVariable("authToken") String authToken) {
+        return tokenService.removeTokenByAuthCode(authToken);
     }
     //endregion
 

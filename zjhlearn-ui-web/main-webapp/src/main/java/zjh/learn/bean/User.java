@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class User {
 
-    private Integer userId;
+    private String userId;
 
     private String phone;
 
@@ -21,11 +21,11 @@ public class User {
 
     //region getter and setter
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

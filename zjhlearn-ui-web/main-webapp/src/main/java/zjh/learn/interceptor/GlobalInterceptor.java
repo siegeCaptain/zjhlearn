@@ -35,6 +35,7 @@ public class GlobalInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         userUtils.setCurrentUser(httpServletRequest);
         httpServletRequest.setAttribute("acountServiceApiUrl", urlsConfig.getAcountServiceApiUrl());
+        httpServletRequest.setAttribute("loginUrl", urlsConfig.getLoginUrl());
         httpServletRequest.setAttribute("isLogin", userUtils.isLogin());
         httpServletRequest.setAttribute("isLoginStr", userUtils.isLogin() + "");
         httpServletRequest.setAttribute("indexUrl", urlsConfig.getIndexUrl());

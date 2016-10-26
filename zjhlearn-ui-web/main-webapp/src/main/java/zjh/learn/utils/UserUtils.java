@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 import zjh.learn.bean.User;
+import zjh.learn.config.UrlsConfig;
 import zjh.learn.dtos.ValidateInputDto;
 import zjh.learn.dtos.ValidateOutputDto;
 
@@ -24,6 +25,8 @@ public class UserUtils {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private UrlsConfig urlsConfig;
 
     private User currentUser = null;
 
@@ -46,15 +49,15 @@ public class UserUtils {
             inputDto.setIp(WebUtils.getUserIp(request));
             inputDto.setSource(currentDevice.isMobile() ? "shop_wap" : "shop_web");
 
-            ResponseEntity<ValidateOutputDto> responseEntity = restTemplate.postForEntity(
-                    String.format("%s/api/validate", "http://127.0.0.1:7001"),
+            ValidateOutputDto result = restTemplate.postForObject(
+                    String.format("%s/api/token/validate", urlsConfig.getAcountServiceApiUrl()),
                     inputDto, ValidateOutputDto.class);
 
-            if (responseEntity.getBody().getStatus() == 1) {
+            if (result.getStatus() == 1) {
                 currentUser = new User();
-                currentUser.setUserId(responseEntity.getBody().getUserId());
-                currentUser.setPhone(responseEntity.getBody().getPhone());
-                currentUser.setOpenId(responseEntity.getBody().getOpenId());
+                currentUser.setUserId(result.getUserId());
+                currentUser.setPhone(result.getPhone());
+                currentUser.setOpenId(result.getOpenId());
             }
         }
     }
