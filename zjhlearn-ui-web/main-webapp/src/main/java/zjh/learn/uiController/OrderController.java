@@ -16,6 +16,10 @@ import zjh.learn.service.PayService;
 import zjh.learn.service.dtos.JsPayInput;
 import zjh.learn.service.dtos.QrPayInput;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,13 +77,25 @@ public class OrderController {
      *微信扫描二维码支付
      */
     @RequestMapping(path = "/payment/wechatQr")
-    public String qrImg(String orderSn, ModelMap model) {
+    public String wechatQrPayment(String orderSn, ModelMap model) {
         OrderDto order = restTemplate.getForObject(url("{sn}"), OrderDto.class, orderSn);
 //        if (!OrderStatus.pendingPayment.equals(order.getStatus()))
 //            return "redirect:/order/account/list/unpaid";
-        model.put("qrImg", payService.QrUrl(new QrPayInput(orderSn, getOpenId())));
         model.put("order", order);
+        model.put("amount", new BigDecimal(order.getCoinNum() * 0.5));
         return "order/wechatQr";
+    }
+
+    /**
+     *请求二维码图片流
+     */
+    @RequestMapping(value = "/payment/qrimage")
+    public void qrImage(String ordersn, HttpServletResponse response) {
+        try {
+            ImageIO.write(payService.QrUrl(new QrPayInput(ordersn, getOpenId())), "png", response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String url(String path) {

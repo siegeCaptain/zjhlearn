@@ -65,7 +65,7 @@
     </div>
 
     <div class="shopCarOper">
-        <a href="javascript:create()" class="shopCarDel">确 定</a>
+        <a href="javascript:createOrder()" class="layui-btn">确 定</a>
         <input type="hidden" name="paymentPluginId" id="paymentPluginId">
         <input type="hidden" name="bank" id="bank" value="ABC">
         <input type="hidden" name="openId" value="wechat_openid">

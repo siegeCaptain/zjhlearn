@@ -58,4 +58,15 @@ public class LoginController {
         }
         return false;
     }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> register(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> data = restTemplate.postForObject(String.format("%s/api/account/register", urlsConfig.getAcountServiceApiUrl()),
+                user, Map.class);
+        if (data.get("authToken") != null) {
+            WebUtils.addCookie(request, response, "authToken", data.get("authToken").toString(), maxAge, "/", null);
+        }
+        return data;
+    }
 }

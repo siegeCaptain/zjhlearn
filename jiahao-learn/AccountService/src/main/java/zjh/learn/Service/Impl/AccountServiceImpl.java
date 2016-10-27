@@ -53,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
 
     //用户注册
     @Override
-    public Map<String, Object> saveUser(User user) {
+    public Map<String, Object> saveUser(User user, HttpServletRequest request) {
         Map<String, Object> data = new HashMap<String, Object>();
         User existsUser = getUser(user.getName(), user.getPhone(), user.getPassword());
         if(existsUser != null) {
@@ -67,6 +67,8 @@ public class AccountServiceImpl implements AccountService {
         saved.setPassword("");
         data.put("code", 1);
         data.put("message", "注册成功!");
+        TokenDto token = tokenService.putToken(saved.getUserId(), httpAccessHelper.getUserIp(request));
+        data.put("authToken", token.getAuthCode());
         data.put("savedUser", saved);
         return data;
     }

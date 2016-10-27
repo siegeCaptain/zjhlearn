@@ -16,7 +16,8 @@
 .loginBox .loginInput li .codeBtn.unableBtn{background: #c9c9c9;color: #898989;}
 .loginBox .error{color: #ff0000;font-size: 12px;padding-top: 5px;}
 .loginBox .loginSuccess{text-align: center;font-size: 16px;padding-top: 25px;}
-.layerBot span{display: inline-block;padding: 0 8px;background: #5FB878;}
+.layerBot{width: 480px;height: 38px;}
+.layerBot a{margin: auto}
 /*到货通知弹框*/
 .layerNoice{text-align: center;font-size: 16px;margin-top: -5px;}
 .layerNoice p{padding-top: 15px;}

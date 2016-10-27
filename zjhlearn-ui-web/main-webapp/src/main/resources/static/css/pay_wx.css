@@ -1,0 +1,6 @@
+.payWx{background: #fff;border: 1px solid #bfbfbf;width: auto;height: 370px;}
+.payWx .payWxCon .payCode{width: 214px;height: 214px;line-height: 215px;text-align: center;display: inline-block;margin-top: 10px;border: 1px solid #e9e9e9;}
+.payWx .payWxCon .payCode img{display: inline-block;vertical-align: middle;}
+.payWx .payWxCon .payCodeBot{width: 216px;height:36px;padding-top: 8px;background: #1E9FFF;text-align: center;font-size: 12px;margin-top: 15px;}
+.payWx .payWxCon .payCodeBot img{display: inline-block;vertical-align: middle;margin-right: 8px;}
+.payWx .payWxCon .payCodeBot span{display: inline-block;vertical-align: middle;line-height: 15px;}

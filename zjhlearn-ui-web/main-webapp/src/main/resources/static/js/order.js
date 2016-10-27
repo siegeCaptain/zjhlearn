@@ -20,12 +20,17 @@ $(".payBankList li").click(function () {
     $("#bank").val($(this).attr("data-bank"));
 });
 
-function create() {
+function createOrder() {
     var coinNum = $(".coinNum").val();
     var paymentMethod = $("#paymentPluginId").val();
     if (!paymentMethod) {
         alert("请选择支付方式");
         return false;
+    }
+
+    if (checkLogin() != "true") {
+        Login();
+        return;
     }
 
     if (/^\d*[1-9]\d*$/.test(coinNum)) {
@@ -35,7 +40,6 @@ function create() {
             data: JSON.stringify({coinNum: coinNum, paymentMethod: paymentMethod}),
             dataType: "json",
             contentType: "application/json",
-            async: false,
             success: function (data) {
                 payment(data.sn, data.paymentMethod);
             },

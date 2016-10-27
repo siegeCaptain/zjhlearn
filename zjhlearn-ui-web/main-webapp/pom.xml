@@ -38,6 +38,7 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+        <!--QRcode-->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>

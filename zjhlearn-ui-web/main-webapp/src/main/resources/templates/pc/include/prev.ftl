@@ -81,8 +81,7 @@
         </li>
     </ul>
     <div class="layerBot">
-        <span>
-            <a href="javascript:void(0);" class="loginBtn" id="login">确&nbsp;&nbsp;&nbsp;&nbsp;定</a>
-        </span>
+        <a href="javascript:void(0);" class="layui-btn" id="login">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+        <a href="javascript:void(0);" class="layui-btn" id="register">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
     </div>
 </div>

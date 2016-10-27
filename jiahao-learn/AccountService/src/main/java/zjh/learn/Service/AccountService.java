@@ -17,7 +17,7 @@ public interface AccountService {
     User getUser(String name,String phone, String password);
 
     //用户注册
-    Map<String, Object> saveUser(User user);
+    Map<String, Object> saveUser(User user, HttpServletRequest request);
 
     //用户登录
     Map<String, Object> login(User user, HttpServletRequest request);

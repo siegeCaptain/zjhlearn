@@ -34,6 +34,7 @@ $(function () {
     var timeOut;
     var count = 60;
     var loginBtn = $("#login");
+    var registerBtn = $("#register");
     var phoneReg = /^1[0-9]{10}$/;
     var phonecodeReg = /^\d{4}$/;
     var source = "shop_web";
@@ -134,7 +135,8 @@ $(function () {
             },
             beforeSend: function () {
                 isLogining = true;
-                loginBtn.addClass("unableBtn")
+                loginBtn.addClass("unableBtn");
+                registerBtn.addClass("unableBtn");
             },
             success: function (data) {
                 if (data.code == 1) {
@@ -178,6 +180,54 @@ $(function () {
                 });
                 layer.close(index);
             });
+        });
+    });
+
+    $("#register").click(function () {
+        var phone = $("#phone").val();
+        var password = $("#password").val();
+        var loginSuccess = false;
+
+        if (isLogining) {
+            return;
+        }
+        if ($.trim(phone) == "" || !isMoblePhoneNumber(phone)) {
+            showErrorInfo("请输入11位手机号码！", "phone");
+            return;
+        }
+        $.ajax({
+            url: "/register",
+            type: "POST",
+            data: JSON.stringify(new loginParams($("#phone").val(), $("#password").val())),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function () {
+                isLogining = true;
+                loginBtn.addClass("unableBtn");
+                registerBtn.addClass("unableBtn");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    loginSuccess = true;
+                    isLogin = "true";
+                    closeDiv("loginWin");
+                    $("#userInfo").html("我的账户");
+                    $("#logout").css("display", "");
+                    if (loginSuccess) {
+                        //成功后的一些必要操作
+                        window.location.reload(true);
+                    }
+                } else {
+                    isLogining = false;
+                    loginBtn.removeClass("unableBtn");
+                    registerBtn.removeClass("unableBtn");
+                    showErrorInfo(data.message);
+                }
+            }
         });
     });
 

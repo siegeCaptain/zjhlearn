@@ -6,6 +6,9 @@ import org.springframework.web.client.RestTemplate;
 import zjh.learn.service.PayService;
 import zjh.learn.service.dtos.JsPayInput;
 import zjh.learn.service.dtos.QrPayInput;
+import zjh.learn.utils.GenerateQrCodeUtil;
+
+import java.awt.image.BufferedImage;
 
 /**
  * Created by jiahao.zhang on 2016/10/20.
@@ -35,7 +38,7 @@ public class PayServiceImpl implements PayService {
     }
 
     @Override
-    public String QrUrl(QrPayInput input) {
+    public BufferedImage QrUrl(QrPayInput input) {
         String url = String.format("%s/payment/plugin_submit.jhtml?type=%s&sn=%s&paymentPluginId=%s&openId=%s",
                 "http://127.0.0.1:7007",
                 input.getType(),
@@ -43,6 +46,7 @@ public class PayServiceImpl implements PayService {
                 input.getPaymentPluginId(),
                 input.getOpenId());
         // TODO: 2016/10/20 远程调用二维码生成服务 将参数url转换生成二维码图片的url
-        return url;
+        BufferedImage image = GenerateQrCodeUtil.encodeQrcode(url);
+        return image;
     }
 }

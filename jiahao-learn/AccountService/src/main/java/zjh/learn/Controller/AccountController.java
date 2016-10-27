@@ -29,8 +29,8 @@ public class AccountController {
 
     //region 用户注册
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Map<String, Object> registerUser(@RequestBody User user){
-        return accountService.saveUser(user);
+    public Map<String, Object> registerUser(@RequestBody User user, HttpServletRequest request){
+        return accountService.saveUser(user, request);
     }
     //endregion
 
