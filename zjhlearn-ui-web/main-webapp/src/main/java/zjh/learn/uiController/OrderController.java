@@ -44,6 +44,17 @@ public class OrderController {
     }
 
     /**
+     * 获取订单信息
+     * @param sn
+     * @return 订单信息
+     */
+    @RequestMapping(value = "/{sn}", method = RequestMethod.GET)
+    @ResponseBody
+    public OrderDto get(@PathVariable String sn) {
+        return restTemplate.getForObject(url("{sn}"), OrderDto.class, sn);
+    }
+
+    /**
      *创建订单
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -84,6 +95,18 @@ public class OrderController {
         model.put("order", order);
         model.put("amount", new BigDecimal(order.getCoinNum() * 0.5));
         return "order/wechatQr";
+    }
+
+    /**
+     * 订单支付成功页面
+     *
+     * @param orderSn 订单号
+     */
+    @RequestMapping(path = "/payment/success")
+    public String paySuccess(String orderSn, ModelMap model) {
+        OrderDto order = restTemplate.getForObject(url("{sn}"), OrderDto.class, orderSn);
+        model.put("order", order);
+        return "order/pay-success";
     }
 
     /**

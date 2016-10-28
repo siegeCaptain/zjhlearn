@@ -1,6 +1,7 @@
 package coin.store.controller;
 
 import coin.store.dtos.OrderDto;
+import coin.store.entity.ENUM.OrderStatus;
 import coin.store.entity.Order;
 import coin.store.repository.OrderRepository;
 import coin.store.service.OrderService;
@@ -47,6 +48,33 @@ public class OrderController {
         Order order = orderRepository.findBySn(sn);
         ModelMapper mapper = new ModelMapper();
         return mapper.map(order, OrderDto.class);
+    }
+
+    /**
+     * 改变订单状态
+     *
+     * @param sn     订单Sn
+     * @param status 订单状态
+     * @return 订单Sn
+     */
+    @RequestMapping(value = "/{sn}/{status}", method = RequestMethod.POST)
+    public void changeStatus(@PathVariable("sn") String sn, @PathVariable("status") OrderStatus status) {
+        Order order = orderRepository.findBySn(sn);
+        switch (status) {
+            case canceled:
+                //orderService.cancel(order);
+                //客户已下单未支付，客户主动取消订单(num=3)
+                //notificationService.noticeOrderStatus(order,NotificationService.CUSTOMER_CANCEL_ORDER);
+                break;
+            case pendingShipment:
+                orderService.updateStatus(order, status);
+                break;
+            case completed:
+                orderService.updateStatus(order, status);
+                break;
+            default:
+                break;
+        }
     }
 
     /**

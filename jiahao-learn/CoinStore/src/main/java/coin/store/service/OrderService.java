@@ -1,5 +1,6 @@
 package coin.store.service;
 
+import coin.store.entity.ENUM.OrderStatus;
 import coin.store.entity.ENUM.PaymentMethod;
 import coin.store.entity.Order;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,6 @@ public interface OrderService {
      * 释放过期订单已分配库存并取消订单
      */
     void releaseExpiredAllocatedStockAndCancel();
+
+    void updateStatus(Order order, OrderStatus status);
 }

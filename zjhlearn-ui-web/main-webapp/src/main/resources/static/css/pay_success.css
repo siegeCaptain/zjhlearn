@@ -1,0 +1,16 @@
+.shopCarBox{width: 990px;margin: 50px auto 0;overflow: hidden;}
+.shopCarBox .shopCarTit{position: relative;width: 100%;text-align: center;font-size: 32px;padding: 25px 0;}
+.paySucBox{width: 988px;background: #fff;}
+.paySucBox .paySuc{width: 220px;margin: 0 auto;text-align: center;padding: 45px 0;overflow: hidden;}
+.paySucBox .paySuc p{font-size: 12px;padding-top: 10px;line-height: 15px;}
+@media (max-height:768px){
+.paySucBox .paySuc{padding:20px 0;}
+.paySucBox .paySuc img{width: 140px;height: auto;}
+.paySucBox .paySuc p{padding-top: 5px;}
+.paySucBox .paySuc .paySucBtn{margin-top: 10px;}
+}
+
+
+
+
+

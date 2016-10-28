@@ -98,4 +98,12 @@ public class OrderServiceImpl implements OrderService {
         }
         logger.info("Automatic task release timeout order: " + countOrder + "");
     }
+
+    @Override
+    public void updateStatus(Order order, OrderStatus status) {
+        orderRepository.delete(order);
+        order.setStatus(status);
+        order.setModifyDate(new Date());
+        orderRepository.save(order);
+    }
 }
